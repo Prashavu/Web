@@ -19,20 +19,3 @@ final_df.to_excel("ODI_Overall.xlsx")
 
 
 print(final_df.columns)
-
-
-
-import pandas as pd
-dfs = []
-i = 0
-while i < 26:
-    url = (
-        "http://stats.espncricinfo.com/ci/engine/stats/index.html?class=2;page="+str(i)+";spanmin1=01+Jan+2007;spanval1=span;template=results;type=bowling"
-    )
-    dframe = pd.read_html(url, attrs={"class": "engineTable"})
-    dfs.append(dframe[2].drop(columns="Unnamed: 14"))
-    i = i + 1
-
-result = pd.concat(dfs)
-result = result.reset_index(drop=True)
-print(result)
